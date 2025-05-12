@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Understanding HTML Anchor and Title Tags – My Blog</title>
+</head>
+<body>
+    <p>Learn more about HTML anchor tags on the 
+       <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" title="MDN HTML Anchor Tag Reference">MDN Web Docs</a>.
+    </p>
+</body>
+</html>
