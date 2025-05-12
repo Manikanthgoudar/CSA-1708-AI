@@ -1,0 +1,24 @@
+% Define vowels
+is_vowel(a).
+is_vowel(e).
+is_vowel(i).
+is_vowel(o).
+is_vowel(u).
+
+is_vowel(A) :- char_code(A, C), char_code(Lower, C), downcase_atom(Lower, V), is_vowel(V).
+
+% Main predicate to count vowels in a list
+count_vowels([], 0).  % Base case: empty list
+count_vowels([H|T], Count) :-
+    is_vowel(H),
+    count_vowels(T, RestCount),
+    Count is RestCount + 1.
+
+count_vowels([H|T], Count) :-
+    \+ is_vowel(H),
+    count_vowels(T, Count).
+
+% Helper to convert atom (string) to character list and count vowels
+count_vowels_in_string(Atom, Count) :-
+    atom_chars(Atom, CharList),
+    count_vowels(CharList, Count).
