@@ -1,0 +1,24 @@
+% match_pattern(Pattern, List) succeeds if Pattern matches the List
+
+% Case 1: Exact match
+match_pattern([], []).                     % Empty pattern matches empty list
+match_pattern([H1|T1], [H2|T2]) :-         % Head and tail recursion
+    H1 = H2,
+    match_pattern(T1, T2).
+
+% Case 2: Wildcard match (_ matches any element)
+match_pattern([_ | T1], [_ | T2]) :-
+    match_pattern(T1, T2).
+
+% Case 3: Match prefix
+match_prefix(Pattern, List) :-
+    append(Pattern, _, List).
+
+% Case 4: Match suffix
+match_suffix(Pattern, List) :-
+    append(_, Pattern, List).
+
+% Case 5: Match anywhere (sublist)
+match_sublist(Pattern, List) :-
+    append(_, rest, List),
+    append(Pattern, _, rest).
