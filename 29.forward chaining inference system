@@ -1,0 +1,29 @@
+% Facts (initial known data)
+symptom(john, fever).
+symptom(john, cough).
+symptom(john, sore_throat).
+symptom(john, runny_nose).
+
+% Rules (inference rules)
+has_flu(Person) :-
+    symptom(Person, fever),
+    symptom(Person, cough),
+    symptom(Person, sore_throat).
+
+has_cold(Person) :-
+    symptom(Person, runny_nose),
+    symptom(Person, sore_throat),
+    \+ symptom(Person, fever).  % not feverish means likely cold
+
+% Forward chaining-like queries (goal-based)
+diagnose(Person) :-
+    has_flu(Person),
+    write(Person), write(' may have the flu'), nl.
+
+diagnose(Person) :-
+    has_cold(Person),
+    write(Person), write(' may have a cold'), nl.
+
+% Catch-all
+diagnose(Person) :-
+    write('Diagnosis for '), write(Person), write(' is inconclusive.'), nl.
